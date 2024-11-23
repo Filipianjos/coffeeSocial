@@ -1,6 +1,6 @@
 import conectarAoBanco from "../config/dbConfig.js";
 
-export default async function getTodosPosts(){
+export async function getTodosPosts(){
     // Obtendo a conexão do mongoDB
     const conexao = await conectarAoBanco(process.env.STRING_CONEXAO);
 
@@ -12,4 +12,13 @@ export default async function getTodosPosts(){
 
     // Retornando todos os posts
     return colecao.find().toArray();
+}
+
+export async function criarPost(novoPost) {
+        const conexao = await conectarAoBanco(process.env.STRING_CONEXAO);
+        const db = conexao.db("coffee-social");
+        const colecao = db.collection("posts");
+        return colecao.insertOne(novoPost);
+
+    
 }

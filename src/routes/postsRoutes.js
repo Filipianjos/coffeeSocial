@@ -1,5 +1,5 @@
 import express from "express";
-import { postList } from "../controllers/postsController.js";
+import {postarNovoPost, postList } from "../controllers/postsController.js";
 
 const routes = (app) => {
     // prermite que o servidor interprete requisições
@@ -7,6 +7,9 @@ const routes = (app) => {
 
     // Rota para buscar todos os posts
     app.get("/posts", postList);
+
+    // Rota para criar um novo post
+    app.post("/posts", postarNovoPost)
 
 }
 
